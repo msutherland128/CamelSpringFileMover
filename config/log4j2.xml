@@ -35,7 +35,7 @@
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
         </Logger>
-               
+
         <Root level="INFO">
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
