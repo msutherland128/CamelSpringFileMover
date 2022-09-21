@@ -5,7 +5,7 @@
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} | [%-5level] | [%t] | %C | %M : %L | %msg%n" />
         </Console>
 
-        <RollingFile name="RollingFile" fileName="logs/CamelSpringFileMover.log" filePattern="logs/CamelSpringFileMover-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFile" fileName="logs/com.msutherland128.camelspringfilemover.CamelSpringFileMover.log" filePattern="logs/com.msutherland128.camelspringfilemover.CamelSpringFileMover-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} | [%-5level] | [%t] | %C | %M : %L | %msg%n" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
