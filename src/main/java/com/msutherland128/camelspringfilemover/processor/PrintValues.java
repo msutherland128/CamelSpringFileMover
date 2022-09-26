@@ -1,7 +1,6 @@
 package com.msutherland128.camelspringfilemover.processor;
 
 import com.msutherland128.camelspringfilemover.config.ApplicationProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,19 +10,15 @@ public class PrintValues {
 
     // Create a constructor which runs a method using variables from application properties
 
-    @Autowired
-    public PrintValues(){
-        this.applicationProperties = new ApplicationProperties();
+    public PrintValues(ApplicationProperties applicationProperties){
+        this.applicationProperties = applicationProperties;
         printAllValues();
     }
 
 
     private void printAllValues(){
-        String inFileValue = applicationProperties.getInFileDirectory();
-        String outFileValue = applicationProperties.getOutFileDirectory();
-
-        System.out.println(inFileValue);
-        System.out.println(outFileValue);
+        System.out.println(applicationProperties.getInFileDirectory());
+        System.out.println(applicationProperties.getOutFileDirectory());
 
     }
 

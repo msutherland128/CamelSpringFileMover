@@ -24,6 +24,7 @@
 
     <dependencies>
 
+        <!--Camel-->
         <!-- https://mvnrepository.com/artifact/org.apache.camel/camel-core -->
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -60,17 +61,11 @@
             <version>${spring.version}</version>
         </dependency>
 
+        <!--Testing-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.9.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test-spring</artifactId>
-            <version>${camel.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -87,6 +82,14 @@
             <version>${camel.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring</artifactId>
+            <version>${camel.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.camel</groupId>
