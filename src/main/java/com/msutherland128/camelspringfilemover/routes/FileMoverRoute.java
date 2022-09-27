@@ -16,11 +16,12 @@ public class FileMoverRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        from(applicationProperties.getInFileDirectory())
-                .id("textRoute")
-                .to(applicationProperties.getOutFileDirectory());
+        from(applicationProperties.getInTextFileDirectory())
+                // Todo - research labels
+                //.id("textFileRoute")
+                .to(applicationProperties.getOutTextFileDirectory());
 
         // todo - complete route for csv files
-        from(applicationProperties.getInFileDirectory());
+//        from(applicationProperties.getInTextFileDirectory());
     }
 }

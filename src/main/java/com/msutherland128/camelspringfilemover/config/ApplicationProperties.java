@@ -8,34 +8,45 @@ import org.springframework.stereotype.Component;
 public class ApplicationProperties {
 
     // Create application properties variables
-    private String inFileDirectory;
-    // todo - update var to outtextfile
-    private String outFileDirectory;
-    // todo - add new var for outcsvfile
+    private String inTextFileDirectory;
+    private String outTextFileDirectory;
+    private String inCSVFileDirectory;
+    private String outCSVFileDirectory;
 
-    // todo - add getters/setters for outcsv var
 
     // getters & setters
-    public String getInFileDirectory() {
-        return inFileDirectory;
+
+    public String getInTextFileDirectory() {
+        return inTextFileDirectory;
     }
 
-    public void setInFileDirectory(String inFileDirectory) {
-        this.inFileDirectory = inFileDirectory;
+    public void setInTextFileDirectory(String inFileDirectory) {
+        this.inTextFileDirectory = inFileDirectory;
     }
 
-    public String getOutFileDirectory() {
-        return outFileDirectory;
+    public String getOutTextFileDirectory() {
+        return outTextFileDirectory;
     }
 
-    public void setOutFileDirectory(String outFileDirectory) {
-        this.outFileDirectory = outFileDirectory;
+    public void setOutTextFileDirectory(String outTextFileDirectory) {
+        this.outTextFileDirectory = outTextFileDirectory;
     }
 
+    public String getInCSVFileDirectory() {
+        return inCSVFileDirectory;
+    }
 
+    public void setInCSVFileDirectory(String inCSVFileDirectory) {
+        this.inCSVFileDirectory = inCSVFileDirectory;
+    }
 
+    public String getOutCSVFileDirectory() {
+        return outCSVFileDirectory;
+    }
 
-
+    public void setOutCSVFileDirectory(String outCSVFileDirectory) {
+        this.outCSVFileDirectory = outCSVFileDirectory;
+    }
 }
 
 
