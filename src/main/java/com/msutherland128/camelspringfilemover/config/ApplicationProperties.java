@@ -3,15 +3,18 @@ package com.msutherland128.camelspringfilemover.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @ConfigurationProperties("ih")
 public class ApplicationProperties {
 
     // Create application properties variables
     private String inTextFileDirectory;
-    private String outTextFileDirectory;
+    private String outFileDirectory;
     private String inCSVFileDirectory;
-    private String outCSVFileDirectory;
+    //private String outCSVFileDirectory;
+    private List<String> fileExtension;
 
 
     // getters & setters
@@ -24,14 +27,6 @@ public class ApplicationProperties {
         this.inTextFileDirectory = inFileDirectory;
     }
 
-    public String getOutTextFileDirectory() {
-        return outTextFileDirectory;
-    }
-
-    public void setOutTextFileDirectory(String outTextFileDirectory) {
-        this.outTextFileDirectory = outTextFileDirectory;
-    }
-
     public String getInCSVFileDirectory() {
         return inCSVFileDirectory;
     }
@@ -40,13 +35,32 @@ public class ApplicationProperties {
         this.inCSVFileDirectory = inCSVFileDirectory;
     }
 
-    public String getOutCSVFileDirectory() {
-        return outCSVFileDirectory;
+    public String getOutFileDirectory() {
+        return outFileDirectory;
     }
 
-    public void setOutCSVFileDirectory(String outCSVFileDirectory) {
-        this.outCSVFileDirectory = outCSVFileDirectory;
+    public void setOutFileDirectory(String outFileDirectory) {
+        this.outFileDirectory = outFileDirectory;
+    }
+
+//    REQUIRED ANYMORE?
+//
+//    public String getOutCSVFileDirectory() {
+//        return outCSVFileDirectory;
+//    }
+
+//    public void setOutCSVFileDirectory(String outCSVFileDirectory) {
+//        this.outCSVFileDirectory = outCSVFileDirectory;
+//    }
+
+    public List<String> getFileExtension(){
+        return fileExtension;
+    }
+
+    public void setFileExtension(final List<String> fileExtension){
+        this.fileExtension = fileExtension;
     }
 }
+
 
 

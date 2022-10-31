@@ -18,7 +18,7 @@ public class PrintValues {
 
     private void printAllValues(){
         System.out.println(applicationProperties.getInTextFileDirectory());
-        System.out.println(applicationProperties.getOutTextFileDirectory());
+        System.out.println(applicationProperties.getOutFileDirectory());
 
     }
 
