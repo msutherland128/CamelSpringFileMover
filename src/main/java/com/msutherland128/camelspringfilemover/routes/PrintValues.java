@@ -1,4 +1,4 @@
-package com.msutherland128.camelspringfilemover.processor;
+package com.msutherland128.camelspringfilemover.routes;
 
 import com.msutherland128.camelspringfilemover.config.ApplicationProperties;
 import org.springframework.stereotype.Component;

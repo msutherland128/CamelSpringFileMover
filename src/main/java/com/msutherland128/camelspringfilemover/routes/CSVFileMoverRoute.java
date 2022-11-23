@@ -1,6 +1,7 @@
 package com.msutherland128.camelspringfilemover.routes;
 
 import com.msutherland128.camelspringfilemover.config.ApplicationProperties;
+import com.msutherland128.camelspringfilemover.processor.CSVFileProcessor;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
@@ -8,11 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class CSVFileMoverRoute extends RouteBuilder {
 
-    private ApplicationProperties applicationProperties;
+    private final ApplicationProperties applicationProperties;
+    private final CSVFileProcessor csvFileProcessor;
     private int counter = 0;
 
-    public CSVFileMoverRoute(ApplicationProperties applicationProperties){
+    public CSVFileMoverRoute(final ApplicationProperties applicationProperties, final CSVFileProcessor csvFileProcessor){
         this.applicationProperties = applicationProperties;
+        this.csvFileProcessor = csvFileProcessor;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class CSVFileMoverRoute extends RouteBuilder {
                     exchange.getIn().setHeader("counter", ++counter);
                     exchange.setProperty("testProperty", "testPropertyValue");
                 })
+                .process(csvFileProcessor)
                 .log(LoggingLevel.INFO, "${headers}")
                 .log(LoggingLevel.INFO, "Number of files received is: ${header.counter}")
                 .log(LoggingLevel.INFO, "Message property is: " + exchangeProperty("testProperty"))

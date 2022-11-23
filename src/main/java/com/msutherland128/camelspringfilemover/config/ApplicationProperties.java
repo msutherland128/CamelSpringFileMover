@@ -13,7 +13,6 @@ public class ApplicationProperties {
     private String inTextFileDirectory;
     private String outFileDirectory;
     private String inCSVFileDirectory;
-    //private String outCSVFileDirectory;
     private List<String> fileExtension;
 
 
@@ -42,16 +41,6 @@ public class ApplicationProperties {
     public void setOutFileDirectory(String outFileDirectory) {
         this.outFileDirectory = outFileDirectory;
     }
-
-//    REQUIRED ANYMORE?
-//
-//    public String getOutCSVFileDirectory() {
-//        return outCSVFileDirectory;
-//    }
-
-//    public void setOutCSVFileDirectory(String outCSVFileDirectory) {
-//        this.outCSVFileDirectory = outCSVFileDirectory;
-//    }
 
     public List<String> getFileExtension(){
         return fileExtension;
