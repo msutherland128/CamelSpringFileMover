@@ -24,14 +24,16 @@ public class CSVFileMoverRoute extends RouteBuilder {
         from(applicationProperties.getInCSVFileDirectory())
                 // Todo - research ids
                 .id("csvFileConsumerRoute")
+                .log(LoggingLevel.INFO, "File received on csvFileConsumerRoute.")
                 .filter()
                 .simple("${file:ext} == '" + applicationProperties.getFileExtension().get(0) + "'")
-                .log(LoggingLevel.INFO, "Received message with body: ${body}")
+                //.log(LoggingLevel.INFO, "Received message with body: ${body}")
                 .setHeader("testHeader", simple("1234"))
                 .process(exchange -> {
                     exchange.getIn().setHeader("counter", ++counter);
                     exchange.setProperty("testProperty", "testPropertyValue");
                 })
+                .log(LoggingLevel.INFO, "Sending to CSVFileProcessor.")
                 .process(csvFileProcessor)
                 .log(LoggingLevel.INFO, "${headers}")
                 .log(LoggingLevel.INFO, "Number of files received is: ${header.counter}")

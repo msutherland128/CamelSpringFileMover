@@ -21,11 +21,14 @@ public class TextFileProcessor implements Processor {
         LOGGER.info(exchange.getIn().getHeader("counter", String.class));
 
         String messageBody = exchange.getIn().getBody(String.class);
-        messageBodyManipulator(messageBody);
+        messageBodyManipulator(exchange, messageBody);
+
     }
     
-    public void messageBodyManipulator(String messageBody) {
+    public void messageBodyManipulator(Exchange exchange, String messageBody) {
         String alteredMessageBody = messageBody.concat(" - This message body has been altered by the messageBodyManipulator method.");
-        System.out.println(alteredMessageBody);
+        exchange.getIn().setBody(alteredMessageBody);
+        LOGGER.info("Message transformed to: {}", alteredMessageBody);
+        LOGGER.info("Text file processing complete.");
     }
 }
