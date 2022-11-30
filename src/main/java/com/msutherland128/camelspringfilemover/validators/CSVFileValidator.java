@@ -1,5 +1,6 @@
 package com.msutherland128.camelspringfilemover.validators;
 
+import com.msutherland128.camelspringfilemover.config.ApplicationProperties;
 import com.msutherland128.camelspringfilemover.exceptions.ValidationException;
 import com.msutherland128.camelspringfilemover.processors.CSVFileProcessor;
 import com.msutherland128.camelspringfilemover.processors.MessageParser;
@@ -12,9 +13,11 @@ public class CSVFileValidator extends FileValidator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CSVFileProcessor.class);
     private final MessageParser messageParser;
+    private final ApplicationProperties applicationProperties;
 
-    public CSVFileValidator (final MessageParser messageParser) {
+    public CSVFileValidator (final MessageParser messageParser, ApplicationProperties applicationProperties) {
         this.messageParser = messageParser;
+        this.applicationProperties = applicationProperties;
     }
 
     public void validate(String message) throws ValidationException {
@@ -24,16 +27,24 @@ public class CSVFileValidator extends FileValidator {
 
         // Todo - Create a loop that passes each line of the csv row and send these to the body validator. Don't revalidate 0 index start index of loop at 1.
         // for loop here
-        validateBody(csvRows[1]);
+
     }
 
     private void validateColumnHeaders(String csvRows) {
-        // Todo - log the header and test
-        LOGGER.info("--- csv rows logged ---");
-        LOGGER.info(csvRows);
-        LOGGER.info("--- csv rows logged ---");
+        // log csvRows
+        LOGGER.info("csvRows logged: " + csvRows);
 
         // Todo - compare the headers against application properties. Consider using trim/strip methods
+        LOGGER.info(applicationProperties.getCsvColumnHeaders());
+        String applicationPropertiesCsvColumnHeaders = applicationProperties.getCsvColumnHeaders();
+
+        if (csvRows.equals(applicationPropertiesCsvColumnHeaders)) {
+            System.out.println("The csv headers match the application property values");
+        }
+        else {
+            System.out.println("CSV headers do not match application property values");
+        }
+
 
 
     }
