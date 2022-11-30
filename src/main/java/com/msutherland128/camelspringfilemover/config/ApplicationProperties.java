@@ -14,7 +14,6 @@ public class ApplicationProperties {
     private String outFileDirectory;
     private String inCSVFileDirectory;
     private List<String> fileExtension;
-    // Todo - create getters/setters for csvColumnHeaders variable
     private String csvColumnHeaders;
 
 
@@ -51,7 +50,17 @@ public class ApplicationProperties {
     public void setFileExtension(final List<String> fileExtension){
         this.fileExtension = fileExtension;
     }
+
+    public String getCsvColumnHeaders() {
+        return csvColumnHeaders;
+    }
+    
+    public void setCsvColumnHeaders(String csvColumnHeaders) {
+        this.csvColumnHeaders = csvColumnHeaders;
+    }
+
 }
+
 
 
 

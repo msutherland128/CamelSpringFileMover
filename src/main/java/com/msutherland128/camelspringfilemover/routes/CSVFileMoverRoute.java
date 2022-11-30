@@ -22,7 +22,6 @@ public class CSVFileMoverRoute extends RouteBuilder {
     public void configure() throws Exception {
 
         from(applicationProperties.getInCSVFileDirectory())
-                // Todo - research ids
                 .id("csvFileConsumerRoute")
                 .convertBodyTo(String.class)
                 .log(LoggingLevel.INFO, "File received on csvFileConsumerRoute.")
@@ -39,11 +38,8 @@ public class CSVFileMoverRoute extends RouteBuilder {
                 .log(LoggingLevel.INFO, "${headers}")
                 .log(LoggingLevel.INFO, "Number of files received is: ${header.counter}")
                 .log(LoggingLevel.INFO, "Message property is: " + exchangeProperty("testProperty"))
-                // Todo - investigate issue with debug logging low priority
                 .log(LoggingLevel.DEBUG, "Sending file to: {}", applicationProperties.getOutFileDirectory())
                 .to(applicationProperties.getOutFileDirectory());
 
-        // todo - complete route for csv files
-//        from(applicationProperties.getInTextFileDirectory());
     }
 }

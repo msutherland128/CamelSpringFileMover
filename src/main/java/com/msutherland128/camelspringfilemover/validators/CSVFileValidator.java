@@ -1,12 +1,16 @@
 package com.msutherland128.camelspringfilemover.validators;
 
 import com.msutherland128.camelspringfilemover.exceptions.ValidationException;
+import com.msutherland128.camelspringfilemover.processors.CSVFileProcessor;
 import com.msutherland128.camelspringfilemover.processors.MessageParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CSVFileValidator extends FileValidator {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CSVFileProcessor.class);
     private final MessageParser messageParser;
 
     public CSVFileValidator (final MessageParser messageParser) {
@@ -23,10 +27,14 @@ public class CSVFileValidator extends FileValidator {
         validateBody(csvRows[1]);
     }
 
-    private void validateColumnHeaders(String columnHeaders) {
+    private void validateColumnHeaders(String csvRows) {
         // Todo - log the header and test
+        LOGGER.info("--- csv rows logged ---");
+        LOGGER.info(csvRows);
+        LOGGER.info("--- csv rows logged ---");
 
         // Todo - compare the headers against application properties. Consider using trim/strip methods
+
 
     }
 }

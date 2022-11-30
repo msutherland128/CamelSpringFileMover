@@ -35,7 +35,6 @@ public class TextFileMoverRoute extends RouteBuilder {
                 .log(LoggingLevel.INFO, "${headers}")
                 .log(LoggingLevel.INFO, "Number of files received is: ${header.counter}")
                 .log(LoggingLevel.INFO, "Message property is: " + exchangeProperty("testProperty"))
-                // Todo - investigate issue with debug logging low priority
                 .log(LoggingLevel.INFO, "Sending file to: {}", applicationProperties.getOutFileDirectory())
                 .to(applicationProperties.getOutFileDirectory());
 
