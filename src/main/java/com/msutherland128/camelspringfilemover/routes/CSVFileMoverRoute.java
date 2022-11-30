@@ -1,7 +1,7 @@
 package com.msutherland128.camelspringfilemover.routes;
 
 import com.msutherland128.camelspringfilemover.config.ApplicationProperties;
-import com.msutherland128.camelspringfilemover.processor.CSVFileProcessor;
+import com.msutherland128.camelspringfilemover.processors.CSVFileProcessor;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
@@ -24,10 +24,11 @@ public class CSVFileMoverRoute extends RouteBuilder {
         from(applicationProperties.getInCSVFileDirectory())
                 // Todo - research ids
                 .id("csvFileConsumerRoute")
+                .convertBodyTo(String.class)
                 .log(LoggingLevel.INFO, "File received on csvFileConsumerRoute.")
                 .filter()
                 .simple("${file:ext} == '" + applicationProperties.getFileExtension().get(0) + "'")
-                //.log(LoggingLevel.INFO, "Received message with body: ${body}")
+                .log(LoggingLevel.INFO, "Received message with body: ${body}")
                 .setHeader("testHeader", simple("1234"))
                 .process(exchange -> {
                     exchange.getIn().setHeader("counter", ++counter);

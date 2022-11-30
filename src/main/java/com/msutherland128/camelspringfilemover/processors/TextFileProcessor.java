@@ -1,4 +1,4 @@
-package com.msutherland128.camelspringfilemover.processor;
+package com.msutherland128.camelspringfilemover.processors;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;

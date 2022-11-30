@@ -1,7 +1,7 @@
 package com.msutherland128.camelspringfilemover.routes;
 
 import com.msutherland128.camelspringfilemover.config.ApplicationProperties;
-import com.msutherland128.camelspringfilemover.processor.TextFileProcessor;
+import com.msutherland128.camelspringfilemover.processors.TextFileProcessor;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;

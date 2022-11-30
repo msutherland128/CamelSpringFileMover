@@ -14,6 +14,8 @@ public class ApplicationProperties {
     private String outFileDirectory;
     private String inCSVFileDirectory;
     private List<String> fileExtension;
+    // Todo - create getters/setters for csvColumnHeaders variable
+    private String csvColumnHeaders;
 
 
     // getters & setters
