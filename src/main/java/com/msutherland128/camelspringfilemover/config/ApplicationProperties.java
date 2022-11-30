@@ -54,7 +54,7 @@ public class ApplicationProperties {
     public String getCsvColumnHeaders() {
         return csvColumnHeaders;
     }
-    
+
     public void setCsvColumnHeaders(String csvColumnHeaders) {
         this.csvColumnHeaders = csvColumnHeaders;
     }
