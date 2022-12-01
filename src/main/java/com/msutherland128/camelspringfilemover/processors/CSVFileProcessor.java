@@ -25,6 +25,7 @@ public class CSVFileProcessor implements Processor {
     public void process(Exchange exchange) throws Exception {
         String csvMessageBody = exchange.getIn().getBody(String.class);
 
+        LOGGER.info("Validating CSV file contents.");
         // Todo - bring in CSVFileValidator and validate contents
         csvFileValidator.validate(csvMessageBody);
 
