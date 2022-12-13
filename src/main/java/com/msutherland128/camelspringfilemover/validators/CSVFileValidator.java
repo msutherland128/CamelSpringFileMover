@@ -35,12 +35,16 @@ public class CSVFileValidator extends FileValidator {
 
     }
 
-    private void validateColumnHeaders(String csvRows) {
+    private void validateColumnHeaders(String headerRow) {
         // log csvRows
-        LOGGER.info("csvRows logged: " + csvRows);
+        System.out.println(headerRow);
+        System.out.println();
+        System.out.println(applicationProperties.getCsvColumnHeaders());
+        System.out.println();
+        LOGGER.info("csvRows logged: " + headerRow);
 
         // Testing output of object type
-        LOGGER.info(csvRows.getClass().getName());
+        LOGGER.info(headerRow.getClass().getName());
 
         // Testing output of get method
         LOGGER.info("getCsvColumnHeaders logged: " + applicationProperties.getCsvColumnHeaders());
@@ -49,28 +53,31 @@ public class CSVFileValidator extends FileValidator {
 
         // Todo - compare the headers against application properties. Consider using trim/strip methods
 
-        // send to partser save as String array loop through and log output
-        String [] splitCSVRows = messageParser.parseCSVRow(csvRows);
+        // Todo - call private strip method here pass headerRow & applicationproperties getter
 
-        for (String a : splitCSVRows) {
-            LOGGER.info(a);
+        if (headerRow
+                .strip()
+                .trim().replaceAll("\n","")
+                    .replaceAll("\r","")
+                    .replaceAll("\t","")
+                    .replaceAll("\\s", "")
+                    .replaceAll("\uFEFF", "")
+                .equalsIgnoreCase(applicationProperties.getCsvColumnHeaders()
+                        .strip()
+                        .trim()
+                        .replaceAll("\n","")
+                                .replaceAll("\r","")
+                                .replaceAll("\t","")
+                                .replaceAll("\\s", "")
+                                .replaceAll("\uFEFF", "")
+                )) {
+            LOGGER.info("Validated successfully.");
+
+        } else {
+            LOGGER.info("Validation failed.");
         }
 
-//        if (csvRows.equals(applicationProperties.getCsvColumnHeaders())) {
-//            LOGGER.info("CSV headers match required format.");
-//        } else {
-//            LOGGER.info("CSV headers do not match required format.");
-//        }
-
-//        if (Arrays.equals(csvRows, applicationPropertiesCsvColumnHeaders)) {
-//            System.out.println("The csv message columns match the application property columns..");
-//        }
-//        else {
-//            LOGGER.debug(String.valueOf(applicationPropertiesCsvColumnHeaders));
-//            System.out.println("The csv message columns DO NOT match the application property columns!!");
-//        }
-
-
-
     }
+
+    // Todo - Put all of the strip / trim in from validateColumnHeaders method into private method here
 }
