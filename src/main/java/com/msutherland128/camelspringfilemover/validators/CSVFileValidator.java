@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 public class CSVFileValidator extends FileValidator {
 
@@ -24,9 +26,7 @@ public class CSVFileValidator extends FileValidator {
         String[] csvRows = messageParser.parseCSVContents(message);
 
         validateColumnHeaders(csvRows[0]);
-
-        // Todo - pass data to a method with a loop that passes each line of the csv row and send these to the body validator. Don't revalidate 0 index start index of loop at 1.
-        // for loop here
+        validateCsvBody(csvRows);
 
     }
 
@@ -74,7 +74,18 @@ public class CSVFileValidator extends FileValidator {
 
         } else {
             LOGGER.info("Validation failed. Please check csv file headers.");
+            // todo - need to end validation of file if headers are incorrect
+        }
+    }
+
+    private void validateCsvBody(String[] bodyRows) {
+        LOGGER.info("Printing csv body: ");
+        // Todo - Create a loop that passes each line of the csv row and sends these to the body validator.
+        for (int i = 1; i < bodyRows.length; i++) {
+            System.out.println(bodyRows[i]);
         }
     }
 
 }
+
+
