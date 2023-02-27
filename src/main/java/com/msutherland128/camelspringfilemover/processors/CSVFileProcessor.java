@@ -41,40 +41,64 @@ public class CSVFileProcessor implements Processor {
 
         // Todo - split message into an array. Bring in MessageParser & use the message parser method
         String[] csvRows = messageParser.parseCSVContents(exchange.getIn().getBody(String.class));
-        String[] updatedCSVRows = new String[csvRows.length];
-//        String[] csvColumns = messageParser.parseCSVRow(csvRows[1]);
-        StringBuilder builder = new StringBuilder();
+        //String[] updatedCSVRows = new String[csvRows.length];
 
-        // Todo - concat GP details to customer notes
-        for (int i = 0; i < csvRows.length; i++ ) {
+        StringBuilder newStringBuilder = new StringBuilder();
 
-            // Ignores the header row
-            if (i > 0) {
-                System.out.println("Looping message body. Concatenating GP details:");
-                String[] csvColumns = messageParser.parseCSVRow(csvRows[i]);
-                String customerNotes = csvColumns[1].concat(" Some GP data");
+        for (int x = 0; x < csvRows.length; x++) {
 
-                System.out.println(csvRows[i]);
+            StringBuilder rowBuilder = new StringBuilder();
 
-                for (int j = 0; j < csvColumns.length; j++) {
-                    // Inner loop to update the Customer Notes column with customerNotes var
-                    if (j == 1) {
-                        builder.append(customerNotes);
-                        System.out.println(customerNotes);
-                        builder.append(",");
-                    }
-                    builder.append(csvColumns[j]);
-                    builder.append(",");
-                    System.out.println(csvColumns[j]);
+            String[] csvColumns = csvRows[x].split(",");
+            
+
+            for (int y = 0; y < csvColumns.length; y++) {
+
+                if (y == 1) {
+                    rowBuilder.append(" - Some GP data");
+                } else if (y == csvColumns.length -1){
+                    rowBuilder.append(\n);
+                } else {
+
                 }
-                System.out.println("Print builder: ");
-                System.out.println(builder.toString());
-                updatedCSVRows[i] = builder.toString();
-                builder.setLength(0);
 
             }
 
+
         }
+
+
+
+        // Todo - concat GP details to customer notes
+//        for (int i = 0; i < csvRows.length; i++) {
+//
+//            // if statement ignores the header row starts at index (i > 0)
+//            if (i > 0) {
+//                System.out.println("Looping message body. Concatenating GP details:");
+//                String[] csvColumns = messageParser.parseCSVRow(csvRows[i]);
+//                String customerNotes = csvColumns[1].concat(" Added some GP data");
+//
+//                System.out.println(csvRows[i]);
+//
+//                // Inner loop to update the Customer Notes column with customerNotes var
+//                for (int j = 0; j < csvColumns.length; j++) {
+//                    if (j == 1) {
+//                        builder.append(customerNotes);
+//                        System.out.println(customerNotes);
+//                        builder.append(",");
+//                    }
+//                    builder.append(csvColumns[j]);
+//                    builder.append(",");
+//                    System.out.println(csvColumns[j]);
+//                }
+//                System.out.println("Print builder: ");
+//                System.out.println(builder.toString());
+//                updatedCSVRows[i] = builder.toString();
+//                builder.setLength(0);
+//
+//            }
+//
+//        }
 
         for (String line : updatedCSVRows) {
             System.out.println(line);
