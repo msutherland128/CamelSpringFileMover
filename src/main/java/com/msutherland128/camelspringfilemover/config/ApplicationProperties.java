@@ -15,6 +15,7 @@ public class ApplicationProperties {
     private String inCSVFileDirectory;
     private List<String> fileExtension;
     private String csvColumnHeaders;
+    private String customerNotes;
 
 
     // getters & setters
@@ -59,7 +60,13 @@ public class ApplicationProperties {
         this.csvColumnHeaders = csvColumnHeaders;
     }
 
-    
+    public String getCustomerNotes() {
+        return customerNotes;
+    }
+
+    public void setCustomerNotes(String customerNotes){
+        this.customerNotes = customerNotes;
+    }
 
 }
 

@@ -1,5 +1,6 @@
 package com.msutherland128.camelspringfilemover.processors;
 
+import com.msutherland128.camelspringfilemover.config.ApplicationProperties;
 import com.msutherland128.camelspringfilemover.validators.CSVFileValidator;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
@@ -15,11 +16,13 @@ public class CSVFileProcessor implements Processor {
     private static final Logger LOGGER = LoggerFactory.getLogger(CSVFileProcessor.class);
     private final CSVFileValidator csvFileValidator;
     private final MessageParser messageParser;
+    private final ApplicationProperties applicationProperties;
 
 
-    public CSVFileProcessor(CSVFileValidator csvFileValidator, MessageParser messageParser) {
+    public CSVFileProcessor(CSVFileValidator csvFileValidator, MessageParser messageParser, ApplicationProperties applicationProperties) {
         this.csvFileValidator = csvFileValidator;
         this.messageParser = messageParser;
+        this.applicationProperties = applicationProperties;
 
     }
 
@@ -56,8 +59,13 @@ public class CSVFileProcessor implements Processor {
                 String[] csvColumns = csvRows[x].split(",");
 
                 // Todo - Replace hard coding with config in application.properties
+
                 // Create updated var append data
-                String updatedCustomerNotesColumn = csvColumns[1] + " - Some GP data";
+                //String updatedCustomerNotesColumn = csvColumns[1] + " - Some GP data";
+
+                String customerNotes = applicationProperties.getCustomerNotes();
+
+                String updatedCustomerNotesColumn = csvColumns[1] + " " + customerNotes;
 
                 for (int y = 0; y < csvColumns.length; y++) {
                     // appended var to rowBuilder
