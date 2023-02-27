@@ -47,16 +47,20 @@ public class CSVFileProcessor implements Processor {
 
         for (int x = 0; x < csvRows.length; x++) {
 
+            // Ignore row header
             if (x > 0) {
+                // create StringBuilder instance
                 StringBuilder rowBuilder = new StringBuilder();
 
+                // Split rows into columns by ','
                 String[] csvColumns = csvRows[x].split(",");
 
                 // Todo - Replace hard coding with config in application.properties
+                // Create updated var append data
                 String updatedCustomerNotesColumn = csvColumns[1] + " - Some GP data";
 
                 for (int y = 0; y < csvColumns.length; y++) {
-
+                    // appended var to rowBuilder
                     if (y == 1) {
                         rowBuilder.append(updatedCustomerNotesColumn);
                         rowBuilder.append(",");
