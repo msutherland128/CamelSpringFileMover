@@ -52,6 +52,7 @@ public class CSVFileProcessor implements Processor {
 
                 String[] csvColumns = csvRows[x].split(",");
 
+                // Todo - Replace hard coding with config in application.properties
                 String updatedCustomerNotesColumn = csvColumns[1] + " - Some GP data";
 
                 for (int y = 0; y < csvColumns.length; y++) {
@@ -80,7 +81,6 @@ public class CSVFileProcessor implements Processor {
         System.out.println(newStringBuilder);
 
 
-        // Todo - concat GP details to customer notes
 //        for (int i = 0; i < csvRows.length; i++) {
 //
 //            // if statement ignores the header row starts at index (i > 0)
@@ -119,7 +119,7 @@ public class CSVFileProcessor implements Processor {
 //        String manipulatedCSVMessageBody = csvMessageBody.concat(" - This message has been manipulated by the csvMessageBodyManipulator method.");
 //        exchange.getIn().setBody(manipulatedCSVMessageBody);
 //        LOGGER.info("Message transformed to: {}.", manipulatedCSVMessageBody);
-        LOGGER.info("CSV file processing complete.");
+//        LOGGER.info("CSV file processing complete.");
 
     }
 }
