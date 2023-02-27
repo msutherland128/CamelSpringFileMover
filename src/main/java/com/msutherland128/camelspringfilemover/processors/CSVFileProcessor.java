@@ -47,26 +47,37 @@ public class CSVFileProcessor implements Processor {
 
         for (int x = 0; x < csvRows.length; x++) {
 
-            StringBuilder rowBuilder = new StringBuilder();
+            if (x > 0) {
+                StringBuilder rowBuilder = new StringBuilder();
 
-            String[] csvColumns = csvRows[x].split(",");
-            
+                String[] csvColumns = csvRows[x].split(",");
 
-            for (int y = 0; y < csvColumns.length; y++) {
+                String updatedCustomerNotesColumn = csvColumns[1] + " - Some GP data";
 
-                if (y == 1) {
-                    rowBuilder.append(" - Some GP data");
-                } else if (y == csvColumns.length -1){
-                    rowBuilder.append(\n);
-                } else {
+                for (int y = 0; y < csvColumns.length; y++) {
+
+                    if (y == 1) {
+                        rowBuilder.append(updatedCustomerNotesColumn);
+                        rowBuilder.append(",");
+                    } else if (y == csvColumns.length - 1) {
+                        rowBuilder.append(csvColumns[y]);
+                        rowBuilder.append("\n");
+                    } else {
+                        rowBuilder.append(csvColumns[y]);
+                        rowBuilder.append(",");
+                    }
+
 
                 }
+
+                newStringBuilder.append(rowBuilder);
 
             }
 
 
         }
 
+        System.out.println(newStringBuilder);
 
 
         // Todo - concat GP details to customer notes
@@ -99,10 +110,10 @@ public class CSVFileProcessor implements Processor {
 //            }
 //
 //        }
-
-        for (String line : updatedCSVRows) {
-            System.out.println(line);
-        }
+//
+//        for (String line : updatedCSVRows) {
+//            System.out.println(line);
+//        }
 
         // Todo - set data to message body
 //        String manipulatedCSVMessageBody = csvMessageBody.concat(" - This message has been manipulated by the csvMessageBodyManipulator method.");
